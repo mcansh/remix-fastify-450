@@ -1,12 +1,19 @@
 import chalk from "chalk";
 import { reactRouterFastify } from "@mcansh/remix-fastify/react-router";
 import { fastify } from "fastify";
+import cors from "@fastify/cors";
 import sourceMapSupport from "source-map-support";
 import getPort, { portNumbers } from "get-port";
 
 sourceMapSupport.install();
 
 let app = fastify();
+
+await app.register(cors, { prefix: "/api" });
+
+app.all("/api/hello", async (request, reply) => {
+  reply.status(200).send({ hello: "world" });
+});
 
 await app.register(reactRouterFastify);
 
@@ -20,7 +27,7 @@ let address = await app.listen({ port: portToUse, host: "0.0.0.0" });
 if (portToUse !== desiredPort) {
   console.warn(
     chalk.yellow(
-      `⚠️  Port ${desiredPort} is not available, using ${portToUse} instead.`,
+      `⚠️ Port ${desiredPort} is not available, using ${portToUse} instead.`,
     ),
   );
 }

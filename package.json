@@ -10,6 +10,7 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
+    "@fastify/cors": "^10.0.1",
     "@mcansh/remix-fastify": "^4.0.3",
     "@react-router/node": "7.0.1",
     "@react-router/serve": "7.0.1",
@@ -31,6 +32,7 @@
     "autoprefixer": "^10.4.20",
     "dotenv": "^16.4.5",
     "postcss": "^8.4.49",
+    "prettier": "^3.4.2",
     "tailwindcss": "^3.4.15",
     "typescript": "^5.7.2",
     "vite": "^5.4.11",
