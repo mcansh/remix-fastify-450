@@ -3,5 +3,6 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "vite";
 
 export default defineConfig({
+  server: { cors: false },
   plugins: [reactRouter(), tsconfigPaths()],
 });

@@ -9,7 +9,14 @@ sourceMapSupport.install();
 
 let app = fastify();
 
-await app.register(cors, { prefix: "/api" });
+await app.register(
+  async function handleCors(childServer) {
+    childServer.register(cors, {
+      origin: "*",
+    });
+  },
+  { prefix: "/api" },
+);
 
 app.all("/api/hello", async (request, reply) => {
   reply.status(200).send({ hello: "world" });
